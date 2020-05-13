@@ -20,6 +20,7 @@ class Deck():
             for rank in ranks:
                 self.deck.append(Card(rank, suit))
 
+    #prints all the cards in the deck
     def __str__(self):
         deck_comp = ""
         for card in self.deck:
@@ -46,6 +47,7 @@ class Hand():
         if card.rank == "Ace":
             self.has_ace += 1
 
+    #Ace value can be either 1 or 11. This method checks which one is befecial for the person
     def adjust_for_ace(self):
         if self.hand_value > 21 and self.has_ace:
             self.hand_value -= 10
@@ -62,7 +64,7 @@ class Chips():
     def lose_bet(self):
         self.total -= self.bet 
 
-    #This method is called when player's hand value is 21 at beginning     
+    #This method is called when player's hand value is 21 at beginning and dealer's hand value is not     
     def blackjack_win(self):
         self.total += self.bet*1.5 
 
@@ -70,6 +72,7 @@ class Chips():
 playing = True
 game_on = True
 
+#Ask player the amount he wants to bet
 def take_a_bet(chip):
     while True:
         try:
@@ -148,12 +151,13 @@ def rules():
 The rules of the game are given below:
 1. The player is given 2 cards-face up in the beginning.
 2. The dealer is given 2 cards, one face-up and other face-down.
-3. The player goes first. Has option to hit(take 1 card from deck) or stand(end turn).
-4. The dealer will have to take cards from deck until hand value becomes atleast 17.
-5. If the hand value is more than 21 then it is 'bust'. Meaning the other person wins.
-6. Whoever has the highest hand value within 21 wins.
-7. If the player has hand value 21 at beginning then player wins by blackjack if the dealer's hand value is not also 21. Gets 1.5 times of the bet.
-8. After all moves are done, if both hand value are equal, it's a draw.
+3. The cards from 2-10 has face value, Jack, King, Queen has value of 10, Ace can be either 1 or 11.
+4. The player goes first. Has option to hit(take 1 card from deck) or stand(end turn).
+5. The dealer will have to take cards from deck until hand value becomes atleast 17.
+6. If the hand value is more than 21 then it is 'bust'. Meaning the other person wins.
+7. Whoever has the highest hand value within 21 wins.
+8. If the player has hand value 21 at beginning then player wins by blackjack if the dealer's hand value is not also 21. Gets 1.5 times of the bet.
+9. After all moves are done, if both hand value are equal, it's a draw.
     ''')
 
 #main game
@@ -215,8 +219,7 @@ def game():
             player_win()
             return
         else:
-            print("It's a Draw!")
-            return
+            return "It's a Draw!"
 
 print('''
  -------------------------------------
